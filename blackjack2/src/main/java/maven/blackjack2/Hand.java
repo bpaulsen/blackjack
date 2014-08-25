@@ -12,6 +12,7 @@ public class Hand implements Cloneable {
 	public Hand() {
 	}
 	
+	@Override
 	public Hand clone() {
 		try {
 			Hand clone = new Hand();

@@ -10,6 +10,7 @@ public class Deck implements Cloneable {
 	private Deck() {
 	}
 	
+	@Override
 	public Deck clone() {
 		try {
 			Deck clone = new Deck();
