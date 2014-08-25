@@ -6,13 +6,9 @@ import maven.blackjack2.standing_simulator.*;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
 
 public class NonThreadSafeBaseImpl implements HittingSimulatorService {
-	private static final double WIN = 1.0;
 	private static final double LOSS = -1.0;
-	private static final double PUSH = 0.0;
-	private static final double BLACKJACK = 1.5;
 	
 	private Hand player;
 	private Hand dealer;

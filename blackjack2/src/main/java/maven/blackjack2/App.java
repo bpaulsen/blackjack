@@ -2,7 +2,6 @@ package maven.blackjack2;
 
 import maven.blackjack2.Hand;
 import maven.blackjack2.Deck;
-import maven.blackjack2.standing_simulator.*;
 import maven.blackjack2.hitting_simulator.*;
 
 import org.springframework.context.ApplicationContext;
@@ -16,7 +15,8 @@ public class App
 {
     public static void main( String[] args )
     {
-    	ApplicationContext ctx = new FileSystemXmlApplicationContext("file:/Users/brian/bj.xml");
+    	@SuppressWarnings("resource")
+		ApplicationContext ctx = new FileSystemXmlApplicationContext("file:/Users/brian/bj.xml");
     	
     	Hand player = new Hand();
 		Hand dealer = new Hand();

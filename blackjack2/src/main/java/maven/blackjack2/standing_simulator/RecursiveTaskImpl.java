@@ -7,9 +7,12 @@ import maven.blackjack2.Hand;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.RecursiveTask;
-import java.util.concurrent.*;
 
 public class RecursiveTaskImpl extends RecursiveTask<Double> implements StandingSimulatorService  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Hand player;
 	private Hand dealer;
 	private Deck deck;	

@@ -3,19 +3,19 @@ package maven.blackjack2.hitting_simulator;
 import maven.blackjack2.Deck;
 import maven.blackjack2.GenericCache;
 import maven.blackjack2.Hand;
-import maven.blackjack2.standing_simulator.*;
 
 import java.util.concurrent.*;
 
 public class RecursiveTaskImpl extends RecursiveTask<Double> implements HittingSimulatorService  {
-	Hand player;
-	Hand dealer;
-	Deck deck;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Hand player;
+	private Hand dealer;
+	private Deck deck;
 	
-	private static final Double WIN = 1.0;
 	private static final Double LOSS = -1.0;
-	private static final Double PUSH = 0.0;
-	private static final Double BLACKJACK = 1.5;
 	
 	private static GenericCache<Long, Double> expected_return_cache = new GenericCache<>();
 	
