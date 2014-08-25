@@ -4,7 +4,7 @@ import maven.blackjack2.Deck;
 import maven.blackjack2.Hand;
 
 public class NonThreadSafeBaseImpl implements
-		StandingSimulatorService {
+		StandingServiceImpl {
 	private static final double WIN = 1.0;
 	private static final double LOSS = -1.0;
 	private static final double PUSH = 0.0;
@@ -14,20 +14,9 @@ public class NonThreadSafeBaseImpl implements
 	private Hand dealer;
 	private Deck deck;
 	
-	public NonThreadSafeBaseImpl() {};
-	
-	@Override
-	public void setPlayer(Hand hand) {
-		this.player = hand;
-	}
-
-	@Override
-	public void setDealer(Hand hand) {
-		this.dealer = hand;
-	}
-	
-	@Override
-	public void setDeck(Deck deck) {
+	public NonThreadSafeBaseImpl( Hand player, Hand dealer, Deck deck ) {
+		this.player = player;
+		this.dealer = dealer;
 		this.deck = deck;
 	}
 	

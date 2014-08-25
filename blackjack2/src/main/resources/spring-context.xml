@@ -10,5 +10,5 @@
 
   <context:annotation-config/>
   <bean id="HittingSimulator" scope="prototype" class="maven.blackjack2.hitting_simulator.TroveImpl"/>
-  <bean id="StandingSimulator" class="maven.blackjack2.standing_simulator.TroveImpl"/>
+  <bean id="StandingSimulator" class="maven.blackjack2.standing_simulator.TroveService"/>
 </beans>

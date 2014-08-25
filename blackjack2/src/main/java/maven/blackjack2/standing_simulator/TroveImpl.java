@@ -1,14 +1,16 @@
 package maven.blackjack2.standing_simulator;
-import org.springframework.stereotype.Component;
+import maven.blackjack2.Deck;
+import maven.blackjack2.Hand;
 
 import gnu.trove.map.*;
 import gnu.trove.map.hash.TLongDoubleHashMap;
 
-@Component("StandingSimulator")
-public class TroveImpl extends NonThreadSafeBaseImpl implements StandingSimulatorService {
+public class TroveImpl extends NonThreadSafeBaseImpl implements StandingServiceImpl {
 	private static TLongDoubleMap expected_return_cache = new TLongDoubleHashMap(3000000);	
 	
-	public TroveImpl() {}
+	public TroveImpl(Hand player, Hand dealer, Deck deck) {
+		super( player, dealer, deck );
+	}
 	
 	@Override
 	public double expected_return() {

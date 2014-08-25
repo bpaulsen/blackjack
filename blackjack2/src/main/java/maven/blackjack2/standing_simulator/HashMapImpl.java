@@ -3,10 +3,15 @@ package maven.blackjack2.standing_simulator;
 import java.util.HashMap;
 import java.util.Map;
 
-public class HashMapImpl extends NonThreadSafeBaseImpl implements StandingSimulatorService {
+import maven.blackjack2.Deck;
+import maven.blackjack2.Hand;
+
+public class HashMapImpl extends NonThreadSafeBaseImpl implements StandingServiceImpl {
 	private static Map<Long, Double> expected_return_cache = new HashMap<Long, Double>(3000000);
 	
-	public HashMapImpl() {}
+	public HashMapImpl(Hand player, Hand dealer, Deck deck) {
+		super( player, dealer, deck);
+	}
 	
 	@Override
 	public double expected_return() {
