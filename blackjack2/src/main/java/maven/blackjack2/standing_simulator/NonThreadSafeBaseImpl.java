@@ -14,9 +14,20 @@ public class NonThreadSafeBaseImpl implements
 	private Hand dealer;
 	private Deck deck;
 	
-	public NonThreadSafeBaseImpl( Hand player, Hand dealer, Deck deck ) {
-		this.player = player;
-		this.dealer = dealer;
+	public NonThreadSafeBaseImpl() {};
+	
+	@Override
+	public void setPlayer(Hand hand) {
+		this.player = hand;
+	}
+
+	@Override
+	public void setDealer(Hand hand) {
+		this.dealer = hand;
+	}
+	
+	@Override
+	public void setDeck(Deck deck) {
 		this.deck = deck;
 	}
 	

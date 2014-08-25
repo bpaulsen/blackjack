@@ -23,9 +23,26 @@ public class RecursiveTaskImpl extends RecursiveTask<Double> implements Standing
 	private static final double BLACKJACK = 1.5;
 	private static final GenericCache<Long, Double> expected_return_cache = new GenericCache<>();
 	
+	public RecursiveTaskImpl() {}
+	
 	public RecursiveTaskImpl(Hand player, Hand dealer, Deck deck ) {
 		this.player = player.clone();
 		this.dealer = dealer.clone();
+		this.deck = deck.clone();
+	}
+	
+	@Override
+	public void setPlayer(Hand hand) {
+		this.player = hand.clone();
+	}
+
+	@Override
+	public void setDealer(Hand hand) {
+		this.dealer = hand.clone();
+	}
+	
+	@Override
+	public void setDeck(Deck deck) {
 		this.deck = deck.clone();
 	}
 	

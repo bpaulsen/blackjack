@@ -4,15 +4,11 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 import maven.blackjack2.GenericCache;
-import maven.blackjack2.Deck;
-import maven.blackjack2.Hand;
 
 public class GenericCacheImpl extends NonThreadSafeBaseImpl implements StandingSimulatorService {
 	private static GenericCache<Long, Double> expected_return_cache = new GenericCache<>();
 
-	public GenericCacheImpl( Hand player, Hand dealer, Deck deck ) {
-		super( player, dealer, deck );
-	}
+	public GenericCacheImpl() {}
 	
 	@Override
 	public double expected_return() {
