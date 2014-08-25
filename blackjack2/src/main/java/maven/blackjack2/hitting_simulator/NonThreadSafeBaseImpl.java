@@ -13,7 +13,7 @@ public class NonThreadSafeBaseImpl implements HittingSimulatorService {
 	private Hand player;
 	private Hand dealer;
 	private Deck deck;
-	private static ApplicationContext ctx = new FileSystemXmlApplicationContext("file:/Users/brian/bj.xml");
+	private static ApplicationContext ctx = new FileSystemXmlApplicationContext("src/main/resources/spring-context.xml");
 
 	public NonThreadSafeBaseImpl(Hand player, Hand dealer, Deck deck ) {
 		this.player = player;

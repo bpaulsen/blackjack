@@ -16,7 +16,7 @@ public class App
     public static void main( String[] args )
     {
     	@SuppressWarnings("resource")
-		ApplicationContext ctx = new FileSystemXmlApplicationContext("file:/Users/brian/bj.xml");
+		ApplicationContext ctx = new FileSystemXmlApplicationContext("src/main/resources/spring-context.xml");
     	
     	Hand player = new Hand();
 		Hand dealer = new Hand();
