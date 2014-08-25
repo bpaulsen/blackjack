@@ -10,9 +10,7 @@ import java.util.concurrent.ExecutionException;
 public class GenericCacheImpl extends NonThreadSafeBaseImpl implements HittingSimulatorService  {
 	private static GenericCache<Long, Double> expected_return_cache = new GenericCache<>();
 	
-	public GenericCacheImpl(Hand player, Hand dealer, Deck deck ) {
-		super( player, dealer, deck );
-	}
+	public GenericCacheImpl() {}
 	
 	/* (non-Javadoc)
 	 * @see HittingSimulator#expected_return()

@@ -2,15 +2,11 @@ package maven.blackjack2.hitting_simulator;
 
 import gnu.trove.map.*;
 import gnu.trove.map.hash.TLongDoubleHashMap;
-import maven.blackjack2.Hand;
-import maven.blackjack2.Deck;
 
 public class TroveImpl extends NonThreadSafeBaseImpl implements HittingSimulatorService {
 	private static TLongDoubleMap expected_return_cache = new TLongDoubleHashMap(75000);	
 	
-	public TroveImpl( Hand player, Hand dealer, Deck deck ) {
-		super( player, dealer, deck );
-	}
+	public TroveImpl() {}
 	
 	@Override
 	public double expected_return() {

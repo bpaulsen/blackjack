@@ -4,13 +4,10 @@ import maven.blackjack2.Hand;
 import maven.blackjack2.Deck;
 import maven.blackjack2.hitting_simulator.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
@@ -21,10 +18,13 @@ public class App
     	Hand player = new Hand();
 		Hand dealer = new Hand();
 		Deck deck = new Deck(6);
+		
+		HittingSimulatorService ss = (HittingSimulatorService) ctx.getBean("HittingSimulator");
 
-		for (int dealer_card=10; dealer_card > 0; --dealer_card) {			
+		for (int dealer_card=10; dealer_card > 0; --dealer_card) {
 			System.out.println(cardToString(dealer_card));
 			deck.deal_card(dealer, dealer_card);
+			ss.setDealer(dealer);
 			for (int player_card_1 = 1; player_card_1 <= 10; player_card_1++) {
 				deck.deal_card(player, player_card_1);
 				for (int player_card_2 = 1; player_card_2 <= player_card_1; player_card_2++) {
@@ -32,7 +32,8 @@ public class App
 
 					Double pct = 0.0;
 
-					HittingSimulatorService ss = (HittingSimulatorService) ctx.getBean("HittingSimulator", player, dealer, deck);
+					ss.setPlayer(player);
+					ss.setDeck(deck);
 					pct = ss.expected_return();
 
 //					int pct_int = (int) Math.round(pct * 10000);
