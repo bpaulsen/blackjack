@@ -3,6 +3,7 @@ package maven.blackjack2;
 import maven.blackjack2.Hand;
 import maven.blackjack2.Deck;
 import maven.blackjack2.standing_simulator.*;
+import maven.blackjack2.hitting_simulator.*;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -31,7 +32,7 @@ public class App
 
 					Double pct = 0.0;
 
-					StandingSimulatorService ss = (StandingSimulatorService) ctx.getBean("StandingSimulator", player, dealer, deck);
+					HittingSimulatorService ss = (HittingSimulatorService) ctx.getBean("HittingSimulator", player, dealer, deck);
 					pct = ss.expected_return();
 
 //					int pct_int = (int) Math.round(pct * 10000);
