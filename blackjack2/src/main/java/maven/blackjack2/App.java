@@ -6,6 +6,7 @@ import maven.blackjack2.hitting_simulator.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 public class App 
@@ -13,13 +14,13 @@ public class App
     public static void main( String[] args )
     {
     	@SuppressWarnings("resource")
-		ApplicationContext ctx = new FileSystemXmlApplicationContext("src/main/resources/spring-context.xml");
+		ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-context.xml");
     	
     	Hand player = new Hand();
 		Hand dealer = new Hand();
 		Deck deck = new Deck(6);
 		
-		HittingSimulatorService ss = (HittingSimulatorService) ctx.getBean("HittingSimulator");
+		HittingSimulatorService ss = ctx.getBean(CachingHittingSimulatorService.class);
 
 		for (int dealer_card=10; dealer_card > 0; --dealer_card) {
 			System.out.println(cardToString(dealer_card));

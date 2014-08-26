@@ -79,8 +79,5 @@ public class NonThreadSafeBaseImpl implements
 		return win_percentage /= deck.count() - skip_count;
 	}
 
-	protected long hash_key(Hand player, Hand dealer) {
-		return player.hashCode() | (((long) dealer.hashCode()) << 31);
-	}
 }
 	
