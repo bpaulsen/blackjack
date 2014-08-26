@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import gnu.trove.map.*;
 import gnu.trove.map.hash.TLongDoubleHashMap;
 
-@Component("StandingSimulator")
+@Component("troveStanding")
 public class TroveImpl implements CachingStandingSimulatorService {
     private final HashingService hashingService;
     private final StandingSimulatorService delegate;

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("trowHitting")
 public class TroveImpl implements CachingHittingSimulatorService {
 	private static TLongDoubleMap expected_return_cache = new TLongDoubleHashMap(75000);
 

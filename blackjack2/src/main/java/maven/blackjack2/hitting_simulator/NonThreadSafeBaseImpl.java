@@ -13,7 +13,7 @@ public class NonThreadSafeBaseImpl implements HittingSimulatorService {
 
 	
 	@Autowired
-	private StandingSimulatorService standing_simulator;
+	private CachingStandingSimulatorService standing_simulator;
 	
 	@Override
 	public double expected_return(Hand player, Hand dealer, Deck deck) {
