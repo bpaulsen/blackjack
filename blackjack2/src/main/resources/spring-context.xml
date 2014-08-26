@@ -10,6 +10,6 @@
 
   <context:annotation-config/>
     <context:component-scan base-package="maven"/>
-  <bean id="HittingSimulator"  class="maven.blackjack2.hitting_simulator.NonThreadSafeBaseImpl"/>
-  <bean id="StandingSimulator" class="maven.blackjack2.standing_simulator.NonThreadSafeBaseImpl"/>
+  <bean id="HittingSimulator"  class="maven.blackjack2.hitting_simulator.TroveImpl"/>
+  <bean id="StandingSimulator" class="maven.blackjack2.standing_simulator.TroveImpl"/>
 </beans>

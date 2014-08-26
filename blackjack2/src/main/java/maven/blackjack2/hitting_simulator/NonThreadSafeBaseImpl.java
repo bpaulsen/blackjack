@@ -7,26 +7,20 @@ import maven.blackjack2.standing_simulator.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
 public class NonThreadSafeBaseImpl implements HittingSimulatorService {
 	private static final double LOSS = -1.0;
-
 	
 	@Autowired
-	private CachingStandingSimulatorService standing_simulator;
+	private StandingSimulatorService standing_simulator;
 	
 	@Override
-	public double expected_return(Hand player, Hand dealer, Deck deck) {
-		return expected_return_calc(player, dealer, deck);
-	}
-
-	protected double expected_return_calc(Hand player, Hand dealer, Deck deck) {
-		if (player.count() > 21) {
+	public double expected_return(final Hand player, final Hand dealer, final Deck deck) {
+		int hard_count = player.hard_count();
+		if ( hard_count > 21 ) {
 			return LOSS;
 		}
-
-		int hard_count = player.hard_count();
-		Double win_percentage = 0.0;
+		
+		double win_percentage = 0.0;
 		for (int i=10; i > 0; --i) {
 			int card_count = deck.count(i);
 			if (card_count == 0) {

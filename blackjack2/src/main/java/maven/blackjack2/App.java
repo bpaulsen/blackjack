@@ -20,7 +20,7 @@ public class App
 		Hand dealer = new Hand();
 		Deck deck = new Deck(6);
 		
-		HittingSimulatorService ss = ctx.getBean(CachingHittingSimulatorService.class);
+		HittingSimulatorService ss = ctx.getBean(HittingSimulatorService.class);
 
 		for (int dealer_card=10; dealer_card > 0; --dealer_card) {
 			System.out.println(cardToString(dealer_card));

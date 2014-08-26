@@ -11,11 +11,7 @@ public class NonThreadSafeBaseImpl implements
 	private static final double BLACKJACK = 1.5;
 	
 	@Override
-	public double expected_return(Hand player, Hand dealer, Deck deck) {
-		return expected_return_calc(player, dealer, deck);
-	}
-
-	protected double expected_return_calc(Hand player, Hand dealer, Deck deck) {
+	public double expected_return(final Hand player, final Hand dealer, final Deck deck) {
 		int player_count = player.count();
 
 		if (player.blackjack() && dealer.card_count() >= 2 ) {

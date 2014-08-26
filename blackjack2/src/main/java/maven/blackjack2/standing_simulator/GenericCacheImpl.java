@@ -6,21 +6,9 @@ import java.util.concurrent.ExecutionException;
 import maven.blackjack2.Deck;
 import maven.blackjack2.GenericCache;
 import maven.blackjack2.Hand;
-import maven.blackjack2.HashingService;
-import org.springframework.beans.factory.annotation.Autowired;
 
-public class GenericCacheImpl extends NonThreadSafeBaseImpl implements StandingSimulatorService {
+public class GenericCacheImpl extends CachingBaseImpl implements StandingSimulatorService {
 	private static GenericCache<Long, Double> expected_return_cache = new GenericCache<>();
-
-    private HashingService hashingService;
-
-    @Autowired
-    //The setter way
-    public void setHashingService(final HashingService hashingService) {
-        this.hashingService = hashingService;
-    }
-
-
 
 	@Override
 	public double expected_return(final Hand player, final Hand dealer, final Deck deck) {
@@ -28,7 +16,8 @@ public class GenericCacheImpl extends NonThreadSafeBaseImpl implements StandingS
 			return expected_return_cache.getValue(hashingService.hash_key(player, dealer), new Callable<Double>() {
 			      @Override
 			      public Double call() throws Exception {
-			    	  return expected_return_calc(player, dealer, deck);
+			    	  // not sure why I can't call super.expected_return directly
+			    	  return maven.blackjack2.standing_simulator.GenericCacheImpl.super.expected_return(player, dealer, deck);
 			      }
 			} );
 		} catch (InterruptedException | ExecutionException e) {
