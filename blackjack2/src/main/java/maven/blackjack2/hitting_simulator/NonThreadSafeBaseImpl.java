@@ -5,7 +5,9 @@ import maven.blackjack2.Hand;
 import maven.blackjack2.standing_simulator.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class NonThreadSafeBaseImpl implements HittingSimulatorService {
 	private static final double LOSS = -1.0;
 
@@ -44,9 +46,5 @@ public class NonThreadSafeBaseImpl implements HittingSimulatorService {
 		}
 		
 		return win_percentage /= deck.count();
-	}
-	
-	protected long hash_key(Hand player, Hand dealer) {
-		return player.hashCode() | (((long) dealer.hashCode()) << 31);
 	}
 }
