@@ -3,20 +3,20 @@ package maven.blackjack2.standing_simulator;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
+import maven.blackjack2.Deck;
 import maven.blackjack2.GenericCache;
+import maven.blackjack2.Hand;
 
 public class GenericCacheImpl extends NonThreadSafeBaseImpl implements StandingSimulatorService {
 	private static GenericCache<Long, Double> expected_return_cache = new GenericCache<>();
-
-	public GenericCacheImpl() {}
 	
 	@Override
-	public double expected_return() {
+	public double expected_return(Hand player, Hand dealer, Deck deck) {
 		try {
-			return expected_return_cache.getValue(hash_key(), new Callable<Double>() {
+			return expected_return_cache.getValue(hash_key(player, dealer), new Callable<Double>() {
 			      @Override
 			      public Double call() throws Exception {
-			    	  return expected_return_calc();
+			    	  return expected_return_calc(player, dealer, deck);
 			      }
 			} );
 		} catch (InterruptedException | ExecutionException e) {

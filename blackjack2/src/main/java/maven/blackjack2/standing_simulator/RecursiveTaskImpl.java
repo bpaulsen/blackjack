@@ -32,22 +32,7 @@ public class RecursiveTaskImpl extends RecursiveTask<Double> implements Standing
 	}
 	
 	@Override
-	public void setPlayer(Hand hand) {
-		this.player = hand.clone();
-	}
-
-	@Override
-	public void setDealer(Hand hand) {
-		this.dealer = hand.clone();
-	}
-	
-	@Override
-	public void setDeck(Deck deck) {
-		this.deck = deck.clone();
-	}
-	
-	@Override
-	public double expected_return() {
+	public double expected_return(Hand player, Hand dealer, Deck deck) {
 		return compute();
 	}
 	

@@ -10,33 +10,12 @@ public class NonThreadSafeBaseImpl implements
 	private static final double PUSH = 0.0;
 	private static final double BLACKJACK = 1.5;
 	
-	private Hand player;
-	private Hand dealer;
-	private Deck deck;
-	
-	public NonThreadSafeBaseImpl() {};
-	
 	@Override
-	public void setPlayer(Hand hand) {
-		this.player = hand;
+	public double expected_return(Hand player, Hand dealer, Deck deck) {
+		return expected_return_calc(player, dealer, deck);
 	}
 
-	@Override
-	public void setDealer(Hand hand) {
-		this.dealer = hand;
-	}
-	
-	@Override
-	public void setDeck(Deck deck) {
-		this.deck = deck;
-	}
-	
-	@Override
-	public double expected_return() {
-		return expected_return_calc();
-	}
-
-	protected double expected_return_calc() {
+	protected double expected_return_calc(Hand player, Hand dealer, Deck deck) {
 		int player_count = player.count();
 
 		if (player.blackjack() && dealer.card_count() >= 2 ) {
@@ -92,7 +71,7 @@ public class NonThreadSafeBaseImpl implements
 			}
 			else {
 				deck.deal_card(dealer, i);
-				win_percentage += expected_return() * card_count;
+				win_percentage += expected_return(player, dealer, deck) * card_count;
 				deck.undeal_card(dealer, i);
 			}
 		}
@@ -100,7 +79,7 @@ public class NonThreadSafeBaseImpl implements
 		return win_percentage /= deck.count() - skip_count;
 	}
 
-	protected long hash_key() {
+	protected long hash_key(Hand player, Hand dealer) {
 		return player.hashCode() | (((long) dealer.hashCode()) << 31);
 	}
 }

@@ -43,7 +43,6 @@ public class NonThreadSafeBaseImpl implements HittingSimulatorService {
 			return LOSS;
 		}
 
-		standing_simulator.setDealer(dealer);
 		int hard_count = player.hard_count();
 		Double win_percentage = 0.0;
 		for (int i=10; i > 0; --i) {
@@ -58,9 +57,7 @@ public class NonThreadSafeBaseImpl implements HittingSimulatorService {
 			else {
 				deck.deal_card(player, i);
 				double hit_return = expected_return();
-				standing_simulator.setDeck(deck);
-				standing_simulator.setPlayer(player);
-				double stand_return = standing_simulator.expected_return();
+				double stand_return = standing_simulator.expected_return(player, dealer, deck);
 				win_percentage += card_count * (hit_return > stand_return ? hit_return : stand_return); 
 				deck.undeal_card(player, i);
 			}
