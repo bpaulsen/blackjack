@@ -16,12 +16,12 @@ public class GenericCacheImpl extends NonThreadSafeBaseImpl implements HittingSi
 	 * @see HittingSimulator#expected_return()
 	 */
 	@Override
-	public double expected_return() {
+	public double expected_return(Hand player, Hand dealer, Deck deck) {
 		try {
-			return expected_return_cache.getValue(hash_key(), new Callable<Double>() {
+			return expected_return_cache.getValue(hash_key(player, dealer), new Callable<Double>() {
 			      @Override
 			      public Double call() throws Exception {
-			    	  return expected_return_calc();
+			    	  return expected_return_calc(player, dealer, deck);
 			      }
 			} );
 		} catch (InterruptedException | ExecutionException e) {

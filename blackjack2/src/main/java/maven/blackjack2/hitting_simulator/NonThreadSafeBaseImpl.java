@@ -8,37 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class NonThreadSafeBaseImpl implements HittingSimulatorService {
 	private static final double LOSS = -1.0;
-	
-	private Hand player;
-	private Hand dealer;
-	private Deck deck;
+
 	
 	@Autowired
 	private StandingSimulatorService standing_simulator;
-
-	public NonThreadSafeBaseImpl() {};
 	
 	@Override
-	public void setPlayer(Hand hand) {
-		this.player = hand;
+	public double expected_return(Hand player, Hand dealer, Deck deck) {
+		return expected_return_calc(player, dealer, deck);
 	}
 
-	@Override
-	public void setDealer(Hand hand) {
-		this.dealer = hand;
-	}
-	
-	@Override
-	public void setDeck(Deck deck) {
-		this.deck = deck;
-	}
-	
-	@Override
-	public double expected_return() {
-		return expected_return_calc();
-	}
-
-	protected double expected_return_calc() {
+	protected double expected_return_calc(Hand player, Hand dealer, Deck deck) {
 		if (player.count() > 21) {
 			return LOSS;
 		}
@@ -56,7 +36,7 @@ public class NonThreadSafeBaseImpl implements HittingSimulatorService {
 			}
 			else {
 				deck.deal_card(player, i);
-				double hit_return = expected_return();
+				double hit_return = expected_return(player, dealer, deck);
 				double stand_return = standing_simulator.expected_return(player, dealer, deck);
 				win_percentage += card_count * (hit_return > stand_return ? hit_return : stand_return); 
 				deck.undeal_card(player, i);
@@ -66,7 +46,7 @@ public class NonThreadSafeBaseImpl implements HittingSimulatorService {
 		return win_percentage /= deck.count();
 	}
 	
-	protected long hash_key() {
+	protected long hash_key(Hand player, Hand dealer) {
 		return player.hashCode() | (((long) dealer.hashCode()) << 31);
 	}
 }

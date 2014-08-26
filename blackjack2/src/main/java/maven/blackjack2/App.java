@@ -24,17 +24,13 @@ public class App
 		for (int dealer_card=10; dealer_card > 0; --dealer_card) {
 			System.out.println(cardToString(dealer_card));
 			deck.deal_card(dealer, dealer_card);
-			ss.setDealer(dealer);
+
 			for (int player_card_1 = 1; player_card_1 <= 10; player_card_1++) {
 				deck.deal_card(player, player_card_1);
 				for (int player_card_2 = 1; player_card_2 <= player_card_1; player_card_2++) {
 					deck.deal_card(player, player_card_2);
 
-					Double pct = 0.0;
-
-					ss.setPlayer(player);
-					ss.setDeck(deck);
-					pct = ss.expected_return();
+					double pct = ss.expected_return(player, dealer, deck);
 
 //					int pct_int = (int) Math.round(pct * 10000);
 					int pct_int = (int) (pct * 1000000);

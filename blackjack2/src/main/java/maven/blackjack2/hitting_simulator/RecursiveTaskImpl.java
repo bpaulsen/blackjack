@@ -18,23 +18,6 @@ public class RecursiveTaskImpl extends RecursiveTask<Double> implements HittingS
 	private static final Double LOSS = -1.0;
 	
 	private static GenericCache<Long, Double> expected_return_cache = new GenericCache<>();
-
-	public RecursiveTaskImpl() {};
-	
-	@Override
-	public void setPlayer(Hand hand) {
-		this.player = hand.clone();
-	}
-
-	@Override
-	public void setDealer(Hand hand) {
-		this.dealer = hand.clone();
-	}
-	
-	@Override
-	public void setDeck(Deck deck) {
-		this.deck = deck.clone();
-	}
 	
 	public RecursiveTaskImpl(Hand player, Hand dealer, Deck deck ) {
 		this.player = player.clone();
@@ -62,7 +45,7 @@ public class RecursiveTaskImpl extends RecursiveTask<Double> implements HittingS
 	 * @see HittingSimulator#expected_return()
 	 */
 	@Override
-	public double expected_return() {
+	public double expected_return(Hand player, Hand dealer, Deck deck) {
 		return compute();	
 	}
 	
